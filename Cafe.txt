@@ -1,0 +1,129 @@
+import java.util.Scanner;
+
+public class Cafe {
+    private static final String[] CATS = {"Food", "Desserts", "Cafe Drinks"};
+    private static final int Stock = 3;
+    private final Scanner sc = new Scanner(System.in);
+    private final CafeItem[][] menus = buildMenus();
+
+    public static void main(String[] args) { new Cafe().start(); }
+
+    private void start() {
+        while (true) {
+            System.out.println("\n=== WELCOME TO CAFE NAME ===\n1. Customer Menu\n2. Employee Restock\n0. Exit");
+            int input = readInt("Option: ");
+            if (input == 1) customerFlow();
+            else if (input == 2) employeeFlow();
+            else if (input == 0) { System.out.println("Goodbye!"); break; }
+            else System.out.println("Invalid choice.");
+        }
+        sc.close();
+    }
+
+    private static CafeItem[][] buildMenus() {
+        return new CafeItem[][]{
+            {
+                new FoodEntree("Food 1", 100.0, "Food Description 1", Stock, true),
+                new FoodEntree("Food 2", 120.0, "Food Description 2", Stock, false),
+                new FoodEntree("Food 3", 140.0, "Food Description 3", Stock, true),
+                new FoodEntree("Food 4", 160.0, "Food Description 4", Stock, false),
+                new FoodEntree("Food 5", 180.0, "Food Description 5", Stock, false)
+            },
+            {
+                new CafeDessert("Dessert 1", 145.0, "Description 1", Stock, true),
+                new CafeDessert("Dessert 2", 110.0, "Description 2", Stock, false),
+                new CafeDessert("Dessert 3", 155.0, "Description 3", Stock, true),
+                new CafeDessert("Dessert 4", 130.0, "Description 4", Stock, true),
+                new CafeDessert("Dessert 5", 115.0, "Description 5", Stock, false)
+            },
+            {
+                new CafeDrink("Drink 1", 135.0, "Description 1", Stock, true),
+                new CafeDrink("Drink 2", 145.0, "Description 2", Stock, false),
+                new CafeDrink("Drink 3", 110.0, "Description 3", Stock, false),
+                new CafeDrink("Drink 4", 150.0, "Description 4", Stock, true),
+                new CafeDrink("Drink 5", 105.0, "Description 5", Stock, true)
+            }
+        };
+    }
+
+    private void customerFlow() {
+        OrderLine[] cart = new OrderLine[100];
+        int count = 0;
+        while (true) {
+            System.out.println("\n--- MENU ---\n1. Food\n2. Desserts\n3. Cafe Drinks\n4. Checkout\n0. Back");
+            int c = readInt("Option: ");
+            if (c == 0) {
+                for (int i = 0; i < count; i++) cart[i].getItem().setStock(cart[i].getItem().getStock() + cart[i].getQuantity());
+                return;
+            } else if (c >= 1 && c <= 3) count = addItem(menus[c - 1], CATS[c - 1], cart, count);
+            else if (c == 4) {
+                if (count == 0) System.out.println("Cart is empty.");
+                else { checkout(cart, count); return; }
+            } else System.out.println("Invalid option.");
+        }
+    }
+
+    private int addItem(CafeItem[] items, String title, OrderLine[] cart, int count) {
+        if (count >= cart.length) { System.out.println("Cart full."); return count; }
+        while (true) {
+            int idx = pickItem(items, title);
+            if (idx == -1) return count;
+            CafeItem item = items[idx];
+            if (item.getStock() <= 0) { System.out.println(item.getName() + " is OUT OF STOCK."); continue; }
+            System.out.println("\n" + item.getName() + " | ₱" + item.getPrice() + " | Stock: " + item.getStock() + "\nAbout: " + item.getDescription());
+            int qty = readInt("Quantity (0 to go back): ");
+            if (qty == 0) continue;
+            if (qty < 0 || qty > item.getStock()) { System.out.println("Invalid quantity."); continue; }
+            item.setStock(item.getStock() - qty);
+            cart[count++] = new OrderLine(item, qty);
+            System.out.println("--- Added " + qty + "x " + item.getName() + " ---");
+            return count;
+        }
+    }
+
+    private void checkout(OrderLine[] cart, int count) {
+        double total = 0;
+        System.out.println("\n=== RECEIPT ===");
+        for (int i = 0; i < count; i++) {
+            double sub = cart[i].getSubtotal();
+            total += sub;
+            System.out.println("- " + cart[i].getItem().getSummary() + " x" + cart[i].getQuantity() + " = ₱" + sub);
+        }
+        System.out.println("Total: ₱" + total);
+        while (true) {
+            System.out.print("Payment (-1 to cancel): ₱");
+            double pay = sc.nextDouble();
+            if (pay == -1) { System.out.println("Order cancelled."); return; }
+            if (pay >= total) { System.out.println("Change: ₱" + (pay - total)); return; }
+            System.out.println("Insufficient payment.");
+        }
+    }
+
+    private void employeeFlow() {
+        while (true) {
+            System.out.println("\n--- RESTOCK ---\n1. Food\n2. Desserts\n3. Cafe Drinks\n0. Back");
+            int cat = readInt("Option: ");
+            if (cat == 0) return;
+            if (cat < 1 || cat > 3) { System.out.println("Invalid category."); continue; }
+            while (true) {
+                int idx = pickItem(menus[cat - 1], CATS[cat - 1]);
+                if (idx == -1) break;
+                CafeItem t = menus[cat - 1][idx];
+                int add = readInt("Add stock to " + t.getName() + " (" + t.getStock() + ", 0 to cancel): ");
+                if (add > 0) { t.setStock(t.getStock() + add); System.out.println("Stock: " + t.getStock()); }
+            }
+        }
+    }
+
+    private int pickItem(CafeItem[] items, String title) {
+        System.out.println("\n--- " + title.toUpperCase() + " ---");
+        for (int i = 0; i < items.length; i++) System.out.println((i + 1) + ". " + items[i].getSummary());
+        System.out.println("0. Back");
+        int c = readInt("Select (1-" + items.length + " or 0): ");
+        if (c == 0) return -1;
+        if (c < 1 || c > items.length) { System.out.println("Invalid selection."); return -2; }
+        return c - 1;
+    }
+
+    private int readInt(String p) { System.out.print(p); return sc.nextInt(); }
+}

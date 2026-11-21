@@ -1,0 +1,46 @@
+abstract class CafeItem implements Orderable {
+    private String name;
+    private double price;
+    private String description;
+    private int stock;
+
+    public CafeItem(String name, double price, String description, int stock) {
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.stock = stock;
+    }
+
+    @Override public String getName() {
+        return name; }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    @Override public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Override public int getStock() {
+        return stock;
+    }
+    @Override public void setStock(int stock) {
+        this.stock = Math.max(0, stock);
+    }
+
+    @Override
+    public abstract String getSummary();
+}

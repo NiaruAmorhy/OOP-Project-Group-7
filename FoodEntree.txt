@@ -1,0 +1,22 @@
+class FoodEntree extends CafeItem {
+    private boolean bestSeller;
+
+    public FoodEntree(String name, double price, String description, int stock, boolean bestSeller) {
+        super(name, price, description, stock);
+        this.bestSeller = bestSeller;
+    }
+
+    public boolean isBestSeller() {
+        return bestSeller;
+    }
+
+    public void setBestSeller(boolean bestSeller) {
+        this.bestSeller = bestSeller;
+    }
+
+    @Override
+    public String getSummary() {
+        String status = getStock() > 0 ? "Stock: " + getStock() : "OUT OF STOCK";
+        return getName() + " (Food)" + (bestSeller ? " [Best Seller]" : "") + " - ₱" + getPrice() + " [" + status + "]";
+    }
+}
