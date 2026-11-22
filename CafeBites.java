@@ -1,22 +1,22 @@
 class CafeBites extends CafeItem {
-    private boolean servedChilled;
+    private boolean servedSpicy;
 
-    public CafeBites(String name, double price, String description, int stock, boolean servedChilled) {
+    public CafeBites(String name, double price, String description, int stock, boolean  servedSpicy) {
         super(name, price, description, stock);
-        this.servedChilled = servedChilled;
+        this. servedSpicy =  servedSpicy;
     }
 
-    public boolean isServedChilled() {
-        return servedChilled;
+    public boolean isServedSpicy() {
+        return  servedSpicy;
     }
     
-    public void setServedChilled(boolean servedChilled) {
-        this.servedChilled = servedChilled;
+    public void setServedSpicy(boolean  servedSpicy) {
+        this. servedSpicy =  servedSpicy;
     }
 
     @Override
     public String getSummary() {
         String status = getStock() > 0 ? "Stock: " + getStock() : "OUT OF STOCK";
-        return getName() + " (Dessert - " + (servedChilled ? "Chilled" : "Warm") + ") - ₱" + getPrice() + " [" + status + "]";
+        return getName() + " (Flavor - " + (servedSpicy ? "Spicy" : "Regular") + ") - ₱" + getPrice() + " [" + status + "]";
     }
 }
