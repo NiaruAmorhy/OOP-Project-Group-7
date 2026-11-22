@@ -1,7 +1,7 @@
-class CafeDessert extends CafeItem {
+class CafeBites extends CafeItem {
     private boolean servedChilled;
 
-    public CafeDessert(String name, double price, String description, int stock, boolean servedChilled) {
+    public CafeBites(String name, double price, String description, int stock, boolean servedChilled) {
         super(name, price, description, stock);
         this.servedChilled = servedChilled;
     }
