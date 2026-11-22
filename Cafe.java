@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Cafe {
-    private static final String[] CATS = {"Food", "Desserts", "Cafe Drinks"};
+    private static final String[] CATS = {"Main Course", "Small Bites", "Beverages/Drinks"};
     private static final int Stock = 3;
     private final Scanner sc = new Scanner(System.in);
     private final CafeItem[][] menus = buildMenus();
@@ -23,25 +23,25 @@ public class Cafe {
     private static CafeItem[][] buildMenus() {
         return new CafeItem[][]{
             {
-                new FoodEntree("Food 1", 100.0, "Food Description 1", Stock, true),
-                new FoodEntree("Food 2", 120.0, "Food Description 2", Stock, false),
-                new FoodEntree("Food 3", 140.0, "Food Description 3", Stock, true),
-                new FoodEntree("Food 4", 160.0, "Food Description 4", Stock, false),
-                new FoodEntree("Food 5", 180.0, "Food Description 5", Stock, false)
+                new FoodEntree("Steakhouse Ribeye", 100.0, "Juicy, tender ribeye steak grilled to perfection, delivering rich flavor in every bite.", Stock, true),
+                new FoodEntree("Steak and Frites", 120.0, "Perfectly grilled steak served with crispy golden French fries for a classic, satisfying meal.", Stock, false),
+                new FoodEntree("Balsamic Glazed Porkchops", 140.0, "Tender, juicy pork chops coated with a sweet and tangy balsamic glaze.", Stock, true),
+                new FoodEntree("Blackened Salmon Cream", 160.0, "Seasoned salmon pan-seared with bold spices and served with a rich, creamy sauce.", Stock, false),
+                new FoodEntree("Steakhouse Hash & Eggs", 180.0, "Savory steakhouse-style hash topped with perfectly cooked eggs for a hearty and satisfying meal.", Stock, false)
             },
             {
-                new CafeDessert("Dessert 1", 145.0, "Description 1", Stock, true),
-                new CafeDessert("Dessert 2", 110.0, "Description 2", Stock, false),
-                new CafeDessert("Dessert 3", 155.0, "Description 3", Stock, true),
-                new CafeDessert("Dessert 4", 130.0, "Description 4", Stock, true),
-                new CafeDessert("Dessert 5", 115.0, "Description 5", Stock, false)
+                new CafeBites("Smash Burger", 145.0, "Juicy smashed beef patty topped with melted cheese and fresh toppings, served on a toasted bun.", Stock, true),
+                new CafeBites("Smoke Chile Smash Burger", 110.0, "A juicy smashed beef patty layered with smoky chili flavors, melted cheese, and savory toppings.", Stock, false),
+                new CafeBites("Spicy Hot Fried Chicken Sandwich", 155.0, "Crispy fried chicken coated in a spicy sauce, served with fresh toppings on a toasted bun.", Stock, true),
+                new CafeBites("Bunless Fried Chicken", 130.0, "Crispy, golden-fried chicken served without the bun for a delicious, satisfying bite.", Stock, true),
+                new CafeBites("Spinach Dip", 115.0, "A creamy blend of spinach, cheese, and savory seasonings, perfect for sharing.", Stock, false)
             },
             {
-                new CafeDrink("Drink 1", 135.0, "Description 1", Stock, true),
-                new CafeDrink("Drink 2", 145.0, "Description 2", Stock, false),
-                new CafeDrink("Drink 3", 110.0, "Description 3", Stock, false),
-                new CafeDrink("Drink 4", 150.0, "Description 4", Stock, true),
-                new CafeDrink("Drink 5", 105.0, "Description 5", Stock, true)
+                new CafeDrink("Brewed Coffe", 135.0, "Freshly brewed coffee with a rich aroma and smooth, satisfying flavor.", Stock, true),
+                new CafeDrink("Americano", 145.0, "A bold espresso diluted with hot water, delivering a smooth and balanced coffee taste.", Stock, false),
+                new CafeDrink("Caramel Latte", 110.0, "Smooth espresso blended with steamed milk and sweet caramel for a rich, creamy treat.", Stock, false),
+                new CafeDrink("Java Chip Frappe", 150.0, "A creamy, blended coffee drink with chocolate chips and rich mocha flavor, topped with a delightful finish.", Stock, true),
+                new CafeDrink("Brewed Raspberry Iced Tea", 105.0, "Refreshing brewed iced tea infused with sweet and tangy raspberry flavor, served chilled.", Stock, true)
             }
         };
     }
@@ -50,7 +50,7 @@ public class Cafe {
         OrderLine[] cart = new OrderLine[100];
         int count = 0;
         while (true) {
-            System.out.println("\n--- MENU ---\n1. Food\n2. Desserts\n3. Cafe Drinks\n4. Checkout\n0. Back");
+            System.out.println("\n--- MENU ---\n1. Main Course\n2. Small Bites\n3. Beverages/Drinks\n4. Checkout\n0. Back");
             int c = readInt("Option: ");
             if (c == 0) {
                 for (int i = 0; i < count; i++) cart[i].getItem().setStock(cart[i].getItem().getStock() + cart[i].getQuantity());
@@ -101,7 +101,7 @@ public class Cafe {
 
     private void employeeFlow() {
         while (true) {
-            System.out.println("\n--- RESTOCK ---\n1. Food\n2. Desserts\n3. Cafe Drinks\n0. Back");
+            System.out.println("\n--- RESTOCK ---\n1. Main Course\n2. Small Bites\n3. Beverages/Drinks\n0. Back");
             int cat = readInt("Option: ");
             if (cat == 0) return;
             if (cat < 1 || cat > 3) { System.out.println("Invalid category."); continue; }
