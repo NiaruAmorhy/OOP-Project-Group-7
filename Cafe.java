@@ -31,8 +31,8 @@ public class Cafe {
             },
             {
                 new CafeBites("Smash Burger", 145.0, "Juicy smashed beef patty topped with melted cheese and fresh toppings, served on a toasted bun.", Stock, true),
-                new CafeBites("Smoke Chile Smash Burger", 110.0, "A juicy smashed beef patty layered with smoky chili flavors, melted cheese, and savory toppings.", Stock, false),
-                new CafeBites("Spicy Hot Fried Chicken Sandwich", 155.0, "Crispy fried chicken coated in a spicy sauce, served with fresh toppings on a toasted bun.", Stock, true),
+                new CafeBites("Smoke Double Smash Burger", 110.0, "Double smashed beef patties with melted cheese and bold smoky flavor on a toasted bun.", Stock, false),
+                new CafeBites("Fried Chicken Sandwich", 155.0, "Crispy fried chicken, served with fresh toppings on a toasted bun.", Stock, true),
                 new CafeBites("Bunless Fried Chicken", 130.0, "Crispy, golden-fried chicken served without the bun for a delicious, satisfying bite.", Stock, true),
                 new CafeBites("Spinach Dip", 115.0, "A creamy blend of spinach, cheese, and savory seasonings, perfect for sharing.", Stock, false)
             },
