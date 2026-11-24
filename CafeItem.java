@@ -1,4 +1,4 @@
-abstract class CafeItem implements Orderable {
+abstract class CafeItem {
     private String name;
     private double price;
     private String description;
@@ -10,15 +10,14 @@ abstract class CafeItem implements Orderable {
         this.description = description;
         this.stock = stock;
     }
-
-    @Override public String getName() {
+ 
+    public String getName() {
         return name; }
 
     public void setName(String name) {
         this.name = name;
     }
-
-    @Override public double getPrice() {
+    public double getPrice() {
         return price;
     }
 
@@ -26,7 +25,7 @@ abstract class CafeItem implements Orderable {
         this.price = price;
     }
 
-    @Override public String getDescription() {
+    public String getDescription() {
         return description;
     }
 
@@ -34,13 +33,12 @@ abstract class CafeItem implements Orderable {
         this.description = description;
     }
 
-    @Override public int getStock() {
+    public int getStock() {
         return stock;
     }
-    @Override public void setStock(int stock) {
+    public void setStock(int stock) {
         this.stock = Math.max(0, stock);
     }
 
-    @Override
     public abstract String getSummary();
 }
