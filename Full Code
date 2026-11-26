@@ -376,7 +376,7 @@ public class Cafe {
 
         while (true) {
 
-            System.out.println("\n=== WELCOME TO MAKULIT CAFE ===");
+            System.out.println("\n=== WELCOME TO BASTA CAFE ===");
             System.out.println("1. Customer Menu");
             System.out.println("2. Employee Portal");
             System.out.println("0. Exit");
