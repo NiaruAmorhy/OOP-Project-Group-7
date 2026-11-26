@@ -1,18 +1,19 @@
 
-package cafes;
+package cafe;
 
 
 
-//  MAIN DISH
-class MainCourse extends CafeItem { //[ENCAPSULATION]
+//  MAIN COURSE
+class MainCourse extends CafeItem { // [INHERITANCE]
 
     // [ENCAPSULATION]
     private boolean bestSeller;
 
     public MainCourse(String name, double price, String description,
                     int stock, boolean bestSeller) {
-
-        super(name, price, description, stock); // [INHERITANCE]
+        
+        // [INHERITANCE]
+        super(name, price, description, stock); 
         this.bestSeller = bestSeller;
     }
 
@@ -39,4 +40,3 @@ class MainCourse extends CafeItem { //[ENCAPSULATION]
                 + " [" + status + "]";
     }
 }
-
