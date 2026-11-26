@@ -96,12 +96,12 @@ class OrderLine {
 }
 
 //  MAIN DISH
-class Maindish extends CafeItem { //[ENCAPSULATION]
+class MainCourse extends CafeItem { //[ENCAPSULATION]
 
     // [ENCAPSULATION]
     private boolean bestSeller;
 
-    public Maindish(String name, double price, String description,
+    public MainCourse(String name, double price, String description,
                     int stock, boolean bestSeller) {
 
         super(name, price, description, stock); // [INHERITANCE]
@@ -131,6 +131,8 @@ class Maindish extends CafeItem { //[ENCAPSULATION]
                 + " [" + status + "]";
     }
 }
+
+
 
 // =================================
 // ABSTRACT CAFE ITEM
@@ -292,46 +294,46 @@ public class Cafe {
 
         // MAIN COURSE
         {
-            new Maindish("Steakhouse Ribeye", 100.0,
+            new MainCourse("Steakhouse Ribeye", 100.0,
                 "Juicy, tender ribeye steak grilled to perfection, delivering rich flavor in every bite.",
                 STOCK, true),
 
-            new Maindish("Steak and Frites", 120.0,
+            new MainCourse("Steak and Frites", 120.0,
                 "Perfectly grilled steak served with crispy golden French fries for a classic, satisfying meal.",
                 STOCK, false),
 
-            new Maindish("Balsamic Glazed Porkchops", 140.0,
+            new MainCourse("Balsamic Glazed Porkchops", 140.0,
                 "Tender, juicy pork chops coated with a sweet and tangy balsamic glaze.",
                 STOCK, true),
 
-            new Maindish("Blackened Salmon Cream", 160.0,
+            new MainCourse("Blackened Salmon Cream", 160.0,
                 "Seasoned salmon pan-seared with bold spices and served with a rich, creamy sauce.",
                 STOCK, false),
 
-            new Maindish("Steakhouse Hash & Eggs", 180.0,
+            new MainCourse("Steakhouse Hash & Eggs", 180.0,
                 "Savory steakhouse-style hash topped with perfectly cooked eggs for a hearty and satisfying meal.",
                 STOCK, false)
         },
 
         // SMALL BITES
         {
-            new Cafebites("Smash Burger", 145.0,
+            new CafeBites("Smash Burger", 145.0,
                 "Juicy smashed beef patty topped with melted cheese and fresh toppings, served on a toasted bun.",
                 STOCK, true),
 
-            new Cafebites("Smoke Double Smash Burger", 110.0,
+            new CafeBites("Smoke Double Smash Burger", 110.0,
                 "Double smashed beef patties with melted cheese and bold smoky flavor on a toasted bun.",
                 STOCK, false),
 
-            new Cafebites("Fried Chicken Sandwich", 155.0,
+            new CafeBites("Fried Chicken Sandwich", 155.0,
                 "Crispy fried chicken, served with fresh toppings on a toasted bun.",
                 STOCK, true),
 
-            new Cafebites("Bunless Fried Chicken", 130.0,
+            new CafeBites("Bunless Fried Chicken", 130.0,
                 "Crispy, golden-fried chicken served without the bun for a delicious, satisfying bite.",
                 STOCK, true),
 
-            new Cafebites("Spinach Dip", 115.0,
+            new CafeBites("Spinach Dip", 115.0,
                 "A creamy blend of spinach, cheese, and savory seasonings, perfect for sharing.",
                 STOCK, false)
         },
