@@ -1,5 +1,5 @@
 
-package cafes;
+package cafe;
 
 // CAFE DRINK
 class CafeDrink extends CafeItem { // [INHERITANCE]
@@ -9,8 +9,9 @@ class CafeDrink extends CafeItem { // [INHERITANCE]
 
     public CafeDrink(String name, double price, String description,
                      int stock, boolean iced) {
-
-        super(name, price, description, stock);
+        
+        // [INHERITANCE]
+        super(name, price, description, stock); 
         this.iced = iced;
     }
 
