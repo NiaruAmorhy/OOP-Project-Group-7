@@ -1,5 +1,5 @@
 
-package cafes;
+package cafe;
 
 // CAFE BITES
 class CafeBites extends CafeItem { // [INHERITANCE]
@@ -9,8 +9,9 @@ class CafeBites extends CafeItem { // [INHERITANCE]
 
     public CafeBites(String name, double price, String description,
                      int stock, boolean servedSpicy) {
-
-        super(name, price, description, stock);
+        
+        // [INHERITANCE]
+        super(name, price, description, stock); 
         this.servedSpicy = servedSpicy;
     }
 
@@ -37,4 +38,5 @@ class CafeBites extends CafeItem { // [INHERITANCE]
                 + " [" + status + "]";
     }
 }
+
 
