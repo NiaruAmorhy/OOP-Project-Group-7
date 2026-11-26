@@ -1,22 +1,33 @@
+
+package cafes;
+
+// =================================
+// ABSTRACT CAFE ITEM
+// =================================
 abstract class CafeItem {
+
     private String name;
     private double price;
     private String description;
     private int stock;
 
-    public CafeItem(String name, double price, String description, int stock) {
+    public CafeItem(String name, double price,
+                    String description, int stock) {
+
         this.name = name;
         this.price = price;
         this.description = description;
         this.stock = stock;
     }
- 
+
     public String getName() {
-        return name; }
+        return name;
+    }
 
     public void setName(String name) {
         this.name = name;
     }
+
     public double getPrice() {
         return price;
     }
@@ -36,8 +47,14 @@ abstract class CafeItem {
     public int getStock() {
         return stock;
     }
+
     public void setStock(int stock) {
-        this.stock = Math.max(0, stock);
+
+        if (stock < 0) {
+            stock = 0;
+        }
+
+        this.stock = stock;
     }
 
     public abstract String getSummary();
