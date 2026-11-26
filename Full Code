@@ -231,12 +231,12 @@ class CafeDrink extends CafeItem { // [INHERITANCE]
 }
 
 // CAFE BITES
-class Cafebites extends CafeItem { // [INHERITANCE]
+class CafeBites extends CafeItem { // [INHERITANCE]
 
     // [ENCAPSULATION]
     private boolean servedSpicy;
 
-    public Cafebites(String name, double price, String description,
+    public CafeBites(String name, double price, String description,
                      int stock, boolean servedSpicy) {
 
         super(name, price, description, stock);
