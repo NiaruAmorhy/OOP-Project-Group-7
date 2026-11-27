@@ -1,26 +1,11 @@
-package cafes;
-
-import java.util.Scanner;
-import java.util.ArrayList;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
-
-
-// =================================
-// MAIN CAFE CLASS
-// =================================
-
-public class Cafe {
-
-    // [ENCAPSULATION]
+// [ENCAPSULATION]
     private static final String[] CATEGORIES = {
         "Main Course",
         "Small Bites",
         "Beverages/Drinks"
     };
 
-    private static final int STOCK = 3;
+    private static final int STOCK = 5;
     private static final int MAX_CART = 100;
 
     private int orderCounter = 1;
@@ -29,28 +14,28 @@ public class Cafe {
 
     private Scanner scanner = new Scanner(System.in);
 
-    // [POLYMORPHISM]
+    //static array-Edyzen
     private CafeItem[][] menus = {
 
         // MAIN COURSE
         {
-            new Maindish("Steakhouse Ribeye", 100.0,
+            new MainCourse("Steakhouse Ribeye", 100.0,
                 "Juicy, tender ribeye steak grilled to perfection, delivering rich flavor in every bite.",
                 STOCK, true),
 
-            new Maindish("Steak and Frites", 120.0,
+            new MainCourse("Steak and Frites", 120.0,
                 "Perfectly grilled steak served with crispy golden French fries for a classic, satisfying meal.",
                 STOCK, false),
 
-            new Maindish("Balsamic Glazed Porkchops", 140.0,
+            new MainCourse("Balsamic Glazed Porkchops", 140.0,
                 "Tender, juicy pork chops coated with a sweet and tangy balsamic glaze.",
                 STOCK, true),
 
-            new Maindish("Blackened Salmon Cream", 160.0,
+            new MainCourse("Blackened Salmon Cream", 160.0,
                 "Seasoned salmon pan-seared with bold spices and served with a rich, creamy sauce.",
                 STOCK, false),
 
-            new Maindish("Steakhouse Hash & Eggs", 180.0,
+            new MainCourse("Steakhouse Hash & Eggs", 180.0,
                 "Savory steakhouse-style hash topped with perfectly cooked eggs for a hearty and satisfying meal.",
                 STOCK, false)
         },
@@ -102,50 +87,8 @@ public class Cafe {
         }
     };
 
-    public static void main(String[] args) {
-        new Cafe().start();
-    }
-
     // =================================
-    // MAIN MENU
-    // =================================
-
-    private void start() {
-
-        String input;
-
-        while (true) {
-
-            System.out.println("\n=== WELCOME TO MAKULIT CAFE ===");
-            System.out.println("1. Customer Menu");
-            System.out.println("2. Employee Portal");
-            System.out.println("0. Exit");
-
-            System.out.print("Select an option: ");
-            input = scanner.nextLine();
-
-            switch (input) {
-
-                case "1":
-                    customerFlow();
-                    break;
-
-                case "2":
-                    employeeFlow();
-                    break;
-
-                case "0":
-                    System.out.println("Goodbye!");
-                    return;
-
-                default:
-                    System.out.println("Invalid command.");
-            }
-        }
-    }
-
-    // =================================
-    // CUSTOMER MENU
+    // CUSTOMER MENU Montaos
     // =================================
 
     private void customerFlow() {
@@ -243,7 +186,7 @@ public class Cafe {
     }
 
     // =================================
-    // ADD ITEM TO CART
+    // ADD ITEM TO CART 
     // =================================
 
     private void addItem(CafeItem[] items, String title) {
@@ -260,7 +203,7 @@ public class Cafe {
         while (true) {
 
             System.out.println("\n--- " + title.toUpperCase() + " ---");
-
+            // [POLYMORPHISM]
             for (int i = 0; i < items.length; i++) {
                 System.out.println((i + 1) + ". " + items[i].getSummary());
             }
@@ -329,10 +272,10 @@ public class Cafe {
     }
 
     // =================================
-    // CHECKOUT
+    // CHECKOUT 
     // =================================
 
-    // Poly
+    // [POLYMORPHISM]
     private boolean checkout() {
         
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy hh:mm a");
@@ -340,6 +283,7 @@ public class Cafe {
 
         String input;
 
+        // [POLYMORPHISM]
         PaymentMethod method;
         
         
@@ -380,6 +324,8 @@ public class Cafe {
 
             System.out.print("Select payment method: ");
             input = scanner.nextLine();
+            
+            
 
             if (input.equals("0")) {
 
@@ -423,6 +369,7 @@ public class Cafe {
                     System.out.println("Change: ₱" + change);
                     System.out.println("====================================");
 
+                    // [POLYMORPHISM]
                     method = new Cash();
                     method.pay();
 
@@ -441,6 +388,7 @@ public class Cafe {
                 System.out.println("Change: ₱0.0");
                 System.out.println("====================================");
 
+                // [POLYMORPHISM]
                 method = new Gcash();
                 method.pay();
 
@@ -458,6 +406,7 @@ public class Cafe {
                 System.out.println("Change: ₱0.0");
                 System.out.println("====================================");
 
+                // [POLYMORPHISM]
                 method = new Card();
                 method.pay();
 
@@ -477,11 +426,11 @@ public class Cafe {
     // =================================
     // RESTORE STOCK
     // =================================
-
+ // Edyzen
     private void restoreStock() {
 
         ArrayList<OrderLine> cart = inventorys.getInventory();
-
+      
         for (int i = 0; i < cart.size(); i++) {
 
             OrderLine order = cart.get(i);
@@ -497,7 +446,7 @@ public class Cafe {
     }
 
     // =================================
-    // EMPLOYEE MENU
+    // EMPLOYEE MENU Abendan
     // =================================
 
     private void employeeFlow() {
@@ -579,6 +528,7 @@ public class Cafe {
 
             System.out.println("\n--- " + title.toUpperCase() + " ---");
 
+            // [POLYMORPHISM]
             for (int i = 0; i < items.length; i++) {
                 System.out.println((i + 1) + ". " + items[i].getSummary());
             }
@@ -641,7 +591,7 @@ public class Cafe {
 
 
     // =================================
-    // EDIT ITEM PRICE
+    // EDIT ITEM PRICE  
     // =================================
     private void editPriceCategory(CafeItem[] items, String title) {
         String input;
@@ -650,6 +600,7 @@ public class Cafe {
         while (true) {
             System.out.println("\n--- EDIT PRICE: " + title.toUpperCase() + " ---");
             for (int i = 0; i < items.length; i++) {
+                // [POLYMORPHISM]
                 System.out.println((i + 1) + ". " + items[i].getSummary());
             }
             System.out.println("0. Back");
@@ -692,4 +643,66 @@ public class Cafe {
             }
         }
     }
+    
+      // =================================
+    // MAIN MENU
+    // =================================
+    //Abendan
+    private void start() {
+
+        String input;
+
+        while (true) {
+
+            System.out.println("\n=== WELCOME TO BASTA CAFE ===");
+            System.out.println("1. Customer Menu");
+            System.out.println("2. Employee Portal");
+            System.out.println("0. Exit");
+
+            System.out.print("Select an option: ");
+            input = scanner.nextLine();
+
+            switch (input) {
+
+                case "1":
+                    customerFlow();
+                    break;
+
+                case "2":
+                    if(!login("ExplainMoAbendan" , scanner)){
+                        break;
+                    }
+                    employeeFlow();
+                    break;
+
+                case "0":
+                    System.out.println("Goodbye!");
+                    return;
+
+                default:
+                    System.out.println("Invalid command.");
+            }
+        }
+    }
+    //Abendan
+    public boolean login(String password, Scanner scanner) {
+        int attempt = 3;
+        
+        while(attempt > 0){
+            System.out.print("Password: ");
+            String input = scanner.nextLine();
+            if(input.equals(password)){
+                return true;
+            }
+            attempt--;
+            System.out.println("Wrong Password, Please Try Again \nRemaining Attempt: " + attempt);
+        }
+        System.out.println("ay bobo");
+        return false;
+    }
+    
+        public static void main(String[] args) {
+        new FullCode().start();
+    }
+        
 }
