@@ -424,9 +424,9 @@
     }
         
     // =================================
-    // RESTORE STOCK
+    // RESTORE STOCK  Edyzen
     // =================================
- // Edyzen
+ 
     private void restoreStock() {
 
         ArrayList<OrderLine> cart = inventorys.getInventory();
