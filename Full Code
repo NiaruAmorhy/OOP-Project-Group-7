@@ -16,22 +16,22 @@ interface PaymentMethod {
     void pay();
 }
 
-class Gcash implements PaymentMethod { // [INTERFACE] 
-    @Override  // [POLYMORPHISM]
+class Gcash implements PaymentMethod { 
+    @Override
     public void pay() {
         System.out.println("GCash payment successful.");
     }
 }
 
-class Cash implements PaymentMethod { // [INTERFACE] 
-    @Override  // [POLYMORPHISM]
+class Cash implements PaymentMethod { 
+    @Override  
     public void pay() {
         System.out.println("Cash payment successful.");
     }
 }
 
-class Card implements PaymentMethod { // [INTERFACE] 
-    @Override  // [POLYMORPHISM]
+class Card implements PaymentMethod { 
+    @Override 
     public void pay() {
         System.out.println("Card payment successful.");
     }
@@ -42,26 +42,26 @@ class Card implements PaymentMethod { // [INTERFACE]
 // =================================
 class Inventory {
 
-    private ArrayList<OrderLine> inventorys = new ArrayList<>();
+    private ArrayList<OrderLine> inventory = new ArrayList<>();
 
     public void add(OrderLine order) {
-        inventorys.add(order);
+        inventory.add(order);
     }
 
     public void remove(int index) {
-        inventorys.remove(index);
+        inventory.remove(index);
     }
 
     public void clear() {
-        inventorys.clear();
+        inventory.clear();
     }
 
     public int length() {
-        return inventorys.size();
+        return inventory.size();
     }
 
     public ArrayList<OrderLine> getInventory() {
-        return inventorys;
+        return inventory;
     }
 }
 
@@ -232,10 +232,7 @@ class CafeDrink extends CafeItem { // [INHERITANCE]
                 ? "Stock: " + getStock()
                 : "OUT OF STOCK";
 
-        return getName()
-                + " (Cafe Drink - " + (iced ? "Iced" : "Hot") + ")"
-                + " - ₱" + getPrice()
-                + " [" + status + "]";
+        return getName() + " (Cafe Drink - " + (iced ? "Iced" : "Hot") + ")" + " - ₱" + getPrice() + " [" + status + "]";
     }
 }
 
@@ -270,18 +267,15 @@ class CafeBites extends CafeItem { // [INHERITANCE]
                 ? "Stock: " + getStock()
                 : "OUT OF STOCK";
 
-        return getName()
-                + " (Flavor - " + (servedSpicy ? "Spicy" : "Regular") + ")"
-                + " - ₱" + getPrice()
-                + " [" + status + "]";
+        return getName() + " (Flavor - " + (servedSpicy ? "Spicy" : "Regular") + ")" + " - ₱" + getPrice() + " [" + status + "]";
     }
 }
 
 // =================================
-// MAIN CAFE CLASS
+// MAIN CAFE CLASS Edyzen
 // =================================
 
-public class FullCode {
+public class Cafe {
 
     // [ENCAPSULATION]
     private static final String[] CATEGORIES = {
@@ -290,7 +284,7 @@ public class FullCode {
         "Beverages/Drinks"
     };
 
-    private static final int STOCK = 3;
+    private static final int STOCK = 5;
     private static final int MAX_CART = 100;
 
     private int orderCounter = 1;
@@ -299,7 +293,7 @@ public class FullCode {
 
     private Scanner scanner = new Scanner(System.in);
 
-    // [POLYMORPHISM]
+    //static array-Edyzen
     private CafeItem[][] menus = {
 
         // MAIN COURSE
@@ -372,50 +366,8 @@ public class FullCode {
         }
     };
 
-    public static void main(String[] args) {
-        new FullCode().start();
-    }
-
     // =================================
-    // MAIN MENU
-    // =================================
-
-    private void start() {
-
-        String input;
-
-        while (true) {
-
-            System.out.println("\n=== WELCOME TO BASTA CAFE ===");
-            System.out.println("1. Customer Menu");
-            System.out.println("2. Employee Portal");
-            System.out.println("0. Exit");
-
-            System.out.print("Select an option: ");
-            input = scanner.nextLine();
-
-            switch (input) {
-
-                case "1":
-                    customerFlow();
-                    break;
-
-                case "2":
-                    employeeFlow();
-                    break;
-
-                case "0":
-                    System.out.println("Goodbye!");
-                    return;
-
-                default:
-                    System.out.println("Invalid command.");
-            }
-        }
-    }
-
-    // =================================
-    // CUSTOMER MENU
+    // CUSTOMER MENU Montaos
     // =================================
 
     private void customerFlow() {
@@ -513,7 +465,7 @@ public class FullCode {
     }
 
     // =================================
-    // ADD ITEM TO CART
+    // ADD ITEM TO CART 
     // =================================
 
     private void addItem(CafeItem[] items, String title) {
@@ -599,7 +551,7 @@ public class FullCode {
     }
 
     // =================================
-    // CHECKOUT
+    // CHECKOUT 
     // =================================
 
     // [POLYMORPHISM]
@@ -651,6 +603,8 @@ public class FullCode {
 
             System.out.print("Select payment method: ");
             input = scanner.nextLine();
+            
+            
 
             if (input.equals("0")) {
 
@@ -749,9 +703,9 @@ public class FullCode {
     }
         
     // =================================
-    // RESTORE STOCK
+    // RESTORE STOCK  Edyzen
     // =================================
-
+ 
     private void restoreStock() {
 
         ArrayList<OrderLine> cart = inventorys.getInventory();
@@ -771,7 +725,7 @@ public class FullCode {
     }
 
     // =================================
-    // EMPLOYEE MENU
+    // EMPLOYEE MENU Abendan
     // =================================
 
     private void employeeFlow() {
@@ -916,7 +870,7 @@ public class FullCode {
 
 
     // =================================
-    // EDIT ITEM PRICE
+    // EDIT ITEM PRICE  
     // =================================
     private void editPriceCategory(CafeItem[] items, String title) {
         String input;
@@ -968,4 +922,66 @@ public class FullCode {
             }
         }
     }
+    
+      // =================================
+    // MAIN MENU Abendan
+    // =================================
+    
+    private void start() {
+
+        String input;
+
+        while (true) {
+
+            System.out.println("\n=== WELCOME TO BASTA CAFE ===");
+            System.out.println("1. Customer Menu");
+            System.out.println("2. Employee Portal");
+            System.out.println("0. Exit");
+
+            System.out.print("Select an option: ");
+            input = scanner.nextLine();
+
+            switch (input) {
+
+                case "1":
+                    customerFlow();
+                    break;
+
+                case "2":
+                    if(!login("ExplainMoAbendan" , scanner)){
+                        break;
+                    }
+                    employeeFlow();
+                    break;
+
+                case "0":
+                    System.out.println("Goodbye!");
+                    return;
+
+                default:
+                    System.out.println("Invalid command.");
+            }
+        }
+    }
+    //Manlapig
+    public boolean login(String password, Scanner scanner) {
+        int attempt = 3;
+        
+        while(attempt > 0){
+            System.out.print("Password: ");
+            String input = scanner.nextLine();
+            if(input.equals(password)){
+                return true;
+            }
+            attempt--;
+            System.out.println("Wrong Password, Please Try Again \nRemaining Attempt: " + attempt);
+        }
+        System.out.println("ay bobo");
+        return false;
+    }
+    
+        public static void main(String[] args) {
+        new Cafe().start();
+    }
+        
 }
