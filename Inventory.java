@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 // =================================
 
-// [ENCAPSULATION] Inventory-Montaos
+// [ENCAPSULATION] Inventory
 // =================================
 class Inventory {
 
