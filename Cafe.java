@@ -186,7 +186,7 @@
     }
 
     // =================================
-    // ADD ITEM TO CART 
+    // ADD ITEM TO CART Shane
     // =================================
 
     private void addItem(CafeItem[] items, String title) {
@@ -272,7 +272,7 @@
     }
 
     // =================================
-    // CHECKOUT 
+    // CHECKOUT Shane
     // =================================
 
     // [POLYMORPHISM]
@@ -515,7 +515,7 @@
     }
 
     // =================================
-    // RESTOCK CATEGORY
+    // RESTOCK CATEGORY Shane
     // =================================
 
     private void restockCategory(CafeItem[] items, String title) {
@@ -591,7 +591,7 @@
 
 
     // =================================
-    // EDIT ITEM PRICE  
+    // EDIT ITEM PRICE  Shane
     // =================================
     private void editPriceCategory(CafeItem[] items, String title) {
         String input;
@@ -684,7 +684,6 @@
             }
         }
     }
-
     //Manlapig
     public boolean login(String password, Scanner scanner) {
         int attempt = 3;
@@ -707,3 +706,4 @@
     }
         
 }
+
