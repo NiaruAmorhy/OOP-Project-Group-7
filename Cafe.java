@@ -669,7 +669,7 @@
                     break;
 
                 case "2":
-                    if(!login("ExplainMoAbendan" , scanner)){
+                    if(!login("BastaCafe" , scanner)){
                         break;
                     }
                     employeeFlow();
@@ -695,10 +695,11 @@
                 return true;
             }
             attempt--;
-            System.out.println("Wrong Password, Please Try Again \nRemaining Attempt: " + attempt);
+            System.out.println("\nWrong Password, Please Try Again \nRemaining Attempt: " + attempt);
         }
-        System.out.println("ay bobo");
+        System.out.println("\nAy bobo");
         return false;
+        
     }
     
         public static void main(String[] args) {
