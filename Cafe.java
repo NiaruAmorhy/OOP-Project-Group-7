@@ -645,9 +645,9 @@
     }
     
       // =================================
-    // MAIN MENU
+    // MAIN MENU Abendan
     // =================================
-    //Abendan
+    
     private void start() {
 
         String input;
@@ -684,7 +684,8 @@
             }
         }
     }
-    //Abendan
+
+    //Manlapig
     public boolean login(String password, Scanner scanner) {
         int attempt = 3;
         
